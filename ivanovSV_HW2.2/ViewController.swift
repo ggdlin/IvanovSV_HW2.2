@@ -23,45 +23,39 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         mixedRGBView.layer.cornerRadius = 20
         setupSliders()
-        setupValueLabels()
         mixColors()
     }
 
     @IBAction func redSliderAction() {
         mixColors()
-        setupValueLabels()
+        redLabel.text = String(round(redSlider.value * 100) / 100)
     }
     @IBAction func greenSliderAction() {
         mixColors()
-        setupValueLabels()
+        greenLabel.text = String(round(greenSlider.value * 100) / 100)
     }
     @IBAction func blueSliderAction() {
         mixColors()
-        setupValueLabels()
+        blueLabel.text = String(round(blueSlider.value * 100) / 100)
     }
+   
     
     private func mixColors() {
         let redColor = CGFloat(redSlider.value)
         let greenColor = CGFloat(greenSlider.value)
         let blueColor = CGFloat(blueSlider.value)
         
-        mixedRGBView.backgroundColor = UIColor(red: redColor, green: greenColor, blue: blueColor, alpha: 1)
+        mixedRGBView.backgroundColor = UIColor(
+            red: redColor,
+            green: greenColor,
+            blue: blueColor,
+            alpha: 1
+        )
     }
     private func setupSliders() {
         redSlider.minimumTrackTintColor = .red
         greenSlider.minimumTrackTintColor = .green
         blueSlider.minimumTrackTintColor = .blue
     }
-    private func setupValueLabels() {
-        let redColorValue = String(redSlider.value)
-        let greenColorValue = String(greenSlider.value)
-        let blueColorValue = String(blueSlider.value)
-        
-        redLabel.text = String(redColorValue.prefix(4))
-        greenLabel.text = String(greenColorValue.prefix(4))
-        blueLabel.text = String(blueColorValue.prefix(4))
-        
-    }
-    
 }
 
