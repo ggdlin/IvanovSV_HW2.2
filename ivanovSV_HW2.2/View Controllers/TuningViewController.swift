@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TuningViewController: UIViewController {
     
     @IBOutlet weak var mixedRGBView: UIView!
     
@@ -18,6 +18,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
+    
+    var backgroundColor: UIColor!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +41,12 @@ class ViewController: UIViewController {
         mixColors()
         blueLabel.text = String(round(blueSlider.value * 100) / 100)
     }
+    
+    @IBAction func doneButtonPressed() {
+        dismiss(animated: true)
+        
+    }
+    
    
     
     private func mixColors() {
