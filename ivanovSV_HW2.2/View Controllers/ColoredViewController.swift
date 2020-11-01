@@ -7,15 +7,30 @@
 
 import UIKit
 
-class ColoredViewController: UIViewController {
 
-    override func prepare(
-        for segue: UIStoryboardSegue,
-        sender: Any?
-    ) {
+protocol TuningViewControllerDelegate {
+    func saveColor(color: UIColor)
+}
+
+class ColoredViewController: UIViewController, TuningViewControllerDelegate {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor(red: 0.6, green: 1, blue: 0.5, alpha: 1)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue,
+                          sender: Any?) {
         let tuningVC = segue.destination as! TuningViewController
-        tuningVC.backgroundColor = view.backgroundColor
+        tuningVC.colorValue = view.backgroundColor
+        tuningVC.delegate = self
     }
     
 
+}
+
+extension ColoredViewController {
+    func saveColor(color: UIColor) {
+        view.backgroundColor = color
+    }
 }
